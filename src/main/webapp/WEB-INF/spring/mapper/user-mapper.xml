@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.todo.persistance.UserDao">
+ 
+ 	<select id="selectAll"></select>
+ 	<select id="findById" resultType="UserVO">
+ 		SELECT * FROM tbl_users WHERE username = #{username}
+ 	</select>
+ 	<select id="select_auths" resultType="AuthorityVO">
+ 		SELECT * FROM tbl_authorities WHERE username = #{username}
+ 	</select>
+ 	<insert id="insert"></insert>
+ 	<update id="update"></update>
+ 	<delete id="delete"></delete>
+ 	
+ 	<select id="create_user_table">
+ 	CREATE TABLE IF NOT EXISTS tbl_users(
+	private String username VARCHAR(20),
+	private String password VARCHAR(255) NOT NULL,
+	private boolean enabled BOOLEAN DEFAULT FALSE,
+	private boolean accountNonExpired BOOLEN DEEFAULT FALSE,
+	private boolean accountNonLocked BOOLEAN DEFAULT FALSE,
+	private boolean credentialsNonExpired BOOLEAN DEFAULT FALSE,
+	realname VARCHAR(20),
+	nickname VARCHAR(20)
+	)
+ 	</select>
+ 	
+	<select id="create_auth_table">
+		CREATE TABLE IF NOT EXISTS tbl_authorities (
+		seq BIGINT AUTO_INCREMENT
+		PRIMARY KEY,
+		username VARCHAR(20),
+		authority VARCHAR(20)
+		)
+	</select>
+
+ 
+ </mapper> 
